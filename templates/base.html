@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <meta charset="UTF-8">
+        <title>Lochinbek</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="{% url 'home' %}">Yangiliklar</a></h1>
+
+            </h1>
+        </header>
+        {% if user.is_authenticated %}
+            <p>Xush kelibsiz,{{user.username}}!</p>
+            <p><a href="{% url 'logout' %}">Chiqish</a></p>
+            
+            <footer>
+                <h2><a href="{% url 'post_new' %}">Yangi post yozish</a></h2>
+            </footer>
+        {% else %}
+            <p>
+            <a href="{% url 'login' %}"> Saytga kirish</a><br>
+            <a href="{% url 'signup' %}"> Ro'yxatdan o'tish</a>
+            </p>
+            
+        {% endif %}
+        <div>
+            {% block content %}
+            {% endblock content %}
+            
+        </div>
+        
+    </body>
+</html>
